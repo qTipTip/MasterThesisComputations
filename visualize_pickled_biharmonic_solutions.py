@@ -17,7 +17,7 @@ from itertools import product
 
 solutions = read_pickled_solutions()
 
-res = 200
+res = 100
 x = np.linspace(0, 1, res)
 y = np.linspace(0, 1, res)
 X, Y = np.meshgrid(x, y)
@@ -45,7 +45,7 @@ def plot_solution(solution, zlim=3, savefig=True, display=False):
     axs.plot_surface(X, Y, z)
 
     if savefig:
-        filename = 'pictures/biharmonic_approximation_{:04d}.pdf'.format(n)
+        filename = 'pictures/biharmonic_approximation_values/biharmonic_approximation_{:04d}.pdf'.format(n)
         plt.savefig(filename)
     if display:
         plt.show()
@@ -53,7 +53,8 @@ def plot_solution(solution, zlim=3, savefig=True, display=False):
 if len(sys.argv) > 1:
     for i in sys.argv[1:]:
         solution = solutions[int(i)-2]
-        plot_solution(solution, type='surf', savefig=True)
+        print(solution)
+        plot_solution(solution, savefig=True, display=False)
 else:
     for solution in solutions:
-        plot_solution(solution, type='surf', savefig=True, display=False)
+        plot_solution(solution, savefig=True, display=False)
